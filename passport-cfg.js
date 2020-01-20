@@ -21,7 +21,7 @@ passport.deserializeUser((id, done) => {
 passport.use(
     new LocalStrategy({ usernameField: 'email' }, (email, password, done) => {
         if(email === userTest.email && password === userTest.password){
-            return done(null, user);
+            return done(null, userTest);
         }
         else{
             return done(null, false);

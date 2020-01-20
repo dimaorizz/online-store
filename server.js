@@ -20,12 +20,44 @@ app.use(session({
     saveUninitialized: false,
 }))
 
+require('./passport-cfg');
+app.use(passport.initialize());
+app.use(passport.session());
+
+app.post('/login', (req, res, next) => {
+    passport.authenticate('local', (err, user) => {
+        if(err) {
+            return next(err);
+        }
+        if(!user){
+            return res.send('wrong login/password');
+        }
+        req.logIn(user, err => {
+            if(err){
+                return next(err);
+            }
+        res.redirect('/admin');
+        })
+    })(req, res, next)
+});
+
 app.get('/', (req, res) => {
     res.send('Hello!');
 })
-app.get('/admin', (req, res) => {
+
+const auth = (req, res, next) => {
+    if(req.isAuthenticated()){
+        return next();
+    }
+    else{
+        res.redirect('/');
+    }
+}
+
+app.get('/admin', auth, (req, res) => {
     res.send('Hello admin');
 })
+
 
 
 app.listen(PORT, () => {
