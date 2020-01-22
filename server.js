@@ -8,9 +8,10 @@ const app = express();
 const PORT = 3000 || process.env.PORT;
 
 
+app.set('view engine', 'hbs');
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
-app.use('/', express.static(path.join(__dirname + '/client/mainPage')));
+app.use(express.static(path.join(__dirname + '/client/')));
 
 // passport middleware
 app.use(session({
@@ -54,6 +55,10 @@ app.use(passport.session());
 //         res.redirect('/');
 //     }
 // }
+
+app.get('/', (req, res) => {
+    res.render('mainPage');
+})
 
 app.listen(PORT, () => {
     console.log(`Server is running on port ${PORT}`);
