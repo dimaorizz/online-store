@@ -1,3 +1,40 @@
 body{
     background-color: rgb(198, 234, 255);
+    font-family: 'Roboto', sans-serif;
+    font-size: 15px;
+}
+
+header nav{
+    display: flex;
+    background-color: #00003f;
+}
+
+header nav ul{
+    display: inline-flex;
+    width: 80%;
+    height: 50px;
+    justify-content: space-between;
+}
+
+header nav ul li{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    color: #ffffff;
+    text-align: center;
+    width: 20%;
+    height: 100%;
+}
+
+.profile{
+    width: 20%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #ffffff;
+}
+
+header nav a, a:visited{
+    color: white;
 }
