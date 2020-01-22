@@ -1,7 +1,7 @@
 const express = require('express');
 const session = require('express-session');
 const path = require('path');
-const hbs = require('hbs');
+const loginRoute = require('./routes/login');
 const FileStore = require('session-file-store')(session);
 const passport = require('passport');
 const app = express();
@@ -12,6 +12,7 @@ app.set('view engine', 'hbs');
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(express.static(path.join(__dirname + '/client/')));
+app.use('/login', loginRoute);
 
 // passport middleware
 app.use(session({
