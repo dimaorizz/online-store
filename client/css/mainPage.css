@@ -16,14 +16,14 @@ header nav ul{
     justify-content: space-between;
 }
 
-header nav ul li{
+header nav ul a{
     display: flex;
     align-items: center;
     justify-content: center;
     font-weight: bold;
     color: #ffffff;
     text-align: center;
-    width: 20%;
+    width: 25%;
     height: 100%;
 }
 
@@ -37,4 +37,24 @@ header nav ul li{
 
 header nav a, a:visited{
     color: white;
+}
+
+.main h1{
+    font-family: 'Bangers', cursive;
+    color: #000000;
+    margin-top: 30px;
+    margin-bottom: 30px;
+    text-align: center;
+    font-size: 40px;
+}
+
+.items{
+    height: 800px;
+    width: 100%;
+    background-color: #121212;
+}
+
+.wrapper{
+    width: 80%;
+    margin: 0 auto;
 }
