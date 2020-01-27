@@ -22,7 +22,8 @@ router.post('/', (req, res, next) => {
                 return next(err);
             }
             req.session.user_id = user.id
-            return res.redirect('/')
+            res.redirect('/')
+            
       });
     })(req, res, next);
   });

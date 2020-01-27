@@ -24,7 +24,13 @@
     <section class="wrapper main">
         <h1>Welcome to my E-Shop</h1>
         <div class="items" id="items">
-
+            {{#each items}}
+                <div class="card">
+                    <h2 class="itemName">{{this.itemName}}</h2>
+                    <p class="description">{{this.description}}</p>
+                    <p class="cost">{{this.cost}}</p>
+                </div>
+            {{/each}}
         </div>
     </section>
 </body>
