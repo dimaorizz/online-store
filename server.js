@@ -6,6 +6,7 @@ const FileStore = require('session-file-store')(session);
 const passport = require('passport');
 const passportInit = require('./passport-cfg');
 const mongoInit = require('./mongoConnection')
+const isAuth = require('./utils/isAuth')
 const app = express();
 const PORT = 3000 || process.env.PORT;
 
@@ -35,7 +36,7 @@ passportInit(passport);
 
 app.use('/login', loginRoute);
 
-app.get('/', (req, res) => {
+app.get('/', isAuth, (req, res) => {
     res.render('mainPage');
 })
 

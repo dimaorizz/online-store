@@ -1,5 +1,6 @@
 const express = require('express')
 const passport = require('passport')
+const User = require('../models/User')
 const router = express.Router()
 
 
@@ -20,6 +21,7 @@ router.post('/', (req, res, next) => {
             if (err) {
                 return next(err);
             }
+            req.session.user_id = user.id
             return res.redirect('/')
       });
     })(req, res, next);
