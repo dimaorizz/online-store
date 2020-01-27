@@ -4,15 +4,17 @@ const path = require('path');
 const loginRoute = require('./routes/login');
 const FileStore = require('session-file-store')(session);
 const passport = require('passport');
+const passportInit = require('./passport-cfg');
+const mongoInit = require('./mongoConnection')
 const app = express();
 const PORT = 3000 || process.env.PORT;
 
+mongoInit()
 
 app.set('view engine', 'hbs');
+app.use(express.static(path.join(__dirname + '/client/')));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
-app.use(express.static(path.join(__dirname + '/client/')));
-app.use('/login', loginRoute);
 
 // passport middleware
 app.use(session({
@@ -27,35 +29,11 @@ app.use(session({
     saveUninitialized: false,
 }))
 
-require('./passport-cfg');
 app.use(passport.initialize());
 app.use(passport.session());
+passportInit(passport);
 
-// app.post('/login', (req, res, next) => {
-//     passport.authenticate('local', (err, user) => {
-//         if(err) {
-//             return next(err);
-//         }
-//         if(!user){
-//             return res.send('wrong login/password');
-//         }
-//         req.logIn(user, err => {
-//             if(err){
-//                 return next(err);
-//             }
-//         res.redirect('/admin');
-//         })
-//     })(req, res, next)
-// });
-
-// const auth = (req, res, next) => {
-//     if(req.isAuthenticated()){
-//         return next();
-//     }
-//     else{
-//         res.redirect('/');
-//     }
-// }
+app.use('/login', loginRoute);
 
 app.get('/', (req, res) => {
     res.render('mainPage');
