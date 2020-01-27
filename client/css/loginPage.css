@@ -1,0 +1,55 @@
+body{
+    background-color: #f5f5dc;
+}
+
+.wrapper{
+    width: 80%;
+    margin: 0 auto;
+}
+
+.login{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    text-align: center;
+    width: 400px;
+    height: 250px;
+}
+
+.login legend{
+    margin-bottom: 10px;
+    text-align: center;
+    width: 100%;
+    font-size: 25px;
+    font-weight: bold;
+}
+
+.login label{
+    font-weight: bold;
+    width: 100%;
+}
+
+.login input[type="text"], input[type="password"]{
+    border-radius: 10px;
+    border: 1px solid black;
+    text-align: center;
+    width: 100%;
+    height: 30px;
+}
+
+.login input[type="submit"]{
+    border-radius: 10px;
+    width: 60%;
+    margin-top: 20px;
+    border: 1px solid black;
+    background-color: #006c80;
+    color: #ffffff;
+}
+
+.main{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    width: 100%;
+}

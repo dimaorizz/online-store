@@ -7,14 +7,12 @@
     <title>MainPage</title>
 </head>
 <body>
-    <header>
-        <h1>Вход в систему</h1>
-    </header>
-    <section>
-        <form action="/login" method="POST">
-            <input type="text" id="email" name="email">
-            <input type="text" id="password" name="password" type="password">
-            <input type="submit" id="btn">
+    <section class="main wrapper">
+        <form action="/login" method="POST" class="login">
+            <legend>Вход в систему</legend>
+            <label for="email">E-mail</label><input type="text" id="email" name="email">
+            <label for="password">Password</label><input type="password" id="password" name="password">
+            <input type="submit" id="btn" value="SIGN IN">
         </form>
     </section>
 </body>
