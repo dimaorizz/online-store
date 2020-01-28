@@ -26,9 +26,10 @@
         <div class="items" id="items">
             {{#each items}}
                 <div class="card">
-                    <h2 class="itemName">{{this.itemName}}</h2>
-                    <p class="description">{{this.description}}</p>
-                    <p class="cost">{{this.cost}}</p>
+                    <img src="/img/default.jpg" alt="Item" class="item-image">
+                    <h2 class="item-name">{{this.itemName}}</h2>
+                    <p class="item-description">{{this.description}}</p>
+                    <p class="item-cost">{{this.cost}} грн</p>
                 </div>
             {{/each}}
         </div>

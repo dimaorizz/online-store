@@ -57,3 +57,43 @@ header nav a, a:visited{
     width: 80%;
     margin: 0 auto;
 }
+
+.items{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+.card{
+    width: 22%;
+    height: 500px;
+    border: 1px red solid;
+    margin-bottom: 25px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: flex-start;
+}
+
+.item-name{
+    font-weight: bold;
+    font-size: 26px;
+    text-align: center;
+    width: 100%;
+}
+
+.item-description{
+    padding: 10px;
+    text-align: center;
+    width: 100%;
+}
+
+.item-cost{
+    text-align: center;
+    width: 100%;
+}
+
+.item-image {
+    margin-top: 20px;
+    width: 70%;
+}
