@@ -1,99 +1,21 @@
-body{
-    background-color: rgb(198, 234, 255);
-    font-family: 'Roboto', sans-serif;
-    font-size: 15px;
+.navbar {
+	background-color: #F0A03D !important
 }
 
-header nav{
-    display: flex;
-    background-color: #00003f;
+footer {
+	background-color: #F0F0F0 !important
 }
 
-header nav ul{
-    display: inline-flex;
-    width: 80%;
-    height: 50px;
-    justify-content: space-between;
+.navbar-brand {
+
 }
 
-header nav ul a{
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-weight: bold;
-    color: #ffffff;
-    text-align: center;
-    width: 25%;
-    height: 100%;
+.name {
+	margin: 0 0 0 0;
 }
 
-.profile{
-    width: 20%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    color: #ffffff;
-}
 
-header nav a, a:visited{
-    color: white;
-}
-
-.main h1{
-    font-family: 'Bangers', cursive;
-    color: #000000;
-    margin-top: 30px;
-    margin-bottom: 30px;
-    text-align: center;
-    font-size: 40px;
-}
-
-.items{
-    height: 800px;
-    width: 100%;
-}
-
-.wrapper{
-    width: 80%;
-    margin: 0 auto;
-}
-
-.items{
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
-}
-
-.card{
-    width: 22%;
-    height: 500px;
-    border: 1px red solid;
-    margin-bottom: 25px;
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    align-items: flex-start;
-}
-
-.item-name{
-    font-weight: bold;
-    font-size: 26px;
-    text-align: center;
-    width: 100%;
-}
-
-.item-description{
-    padding: 10px;
-    text-align: center;
-    width: 100%;
-}
-
-.item-cost{
-    text-align: center;
-    width: 100%;
-}
-
-.item-image {
-    margin-top: 20px;
-    width: 70%;
+.info {
+	height: 500px;
+	background-color: #F0F0F0;
 }
