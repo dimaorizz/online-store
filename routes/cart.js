@@ -30,6 +30,4 @@ router.post('/:id', async (req, res) => {
     }
 })
 
-//TODO: finish cart
-
 module.exports = router
