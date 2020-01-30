@@ -9,12 +9,21 @@ const isAuth = require('../middlewares/isAuth')
 const isAdmin = require('../middlewares/isAdmin')
 
 // GET: localhost:3000/admin
-router.get('/', isAuth, isAdmin, (req, res) => {
-    res.render('adminPage')
+router.get('/', isAuth, isAdmin, async (req, res) => {
+    try {
+        const goods = await Goods.find()
+        if(goods.length !== 0) {
+            res.render('adminPage', { items: goods, msg: '' })
+        } else {
+            res.render('adminPage', { msg: 'No goods on your website' })
+        }
+    } catch (error) {
+        
+    }
 })
 
 //POST: localhost:3000/admin
-router.post('/', (req, res) => {
+router.post('/', isAdmin, (req, res) => {
     const newItem = new Goods({ itemName: req.body.itemName, description: req.body.description, cost: req.body.cost })
     newItem.save()
     .then(() => {

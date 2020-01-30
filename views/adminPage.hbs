@@ -13,5 +13,17 @@
         <input type="text" name="cost">
         <button type="submit">Создать товар</button>
     </form>
+    <div class="msg">{{msg}}</div>
+    {{#each items}}
+        <div class="items">
+            <div class="item">
+                <h2>{{this.itemName}}</h2>
+                <p class="description">{{this.description}}</p>
+                <p class="cost">{{this.cost}}</p>
+                <p class="id">{{this._id}}</p>
+                <button class="delete-item">Delete</button>
+            </div>
+        </div>
+    {{/each}}
 </body>
 </html>

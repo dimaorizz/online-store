@@ -24,8 +24,11 @@ router.post('/', (req, res, next) => {
                 return next(err);
             }
             req.session.user_id = user.id
-            res.redirect('/')
-            
+            if(user.isAdmin){
+                res.redirect('/admin')
+            } else {
+                res.redirect('/')
+            }
       });
     })(req, res, next);
   });

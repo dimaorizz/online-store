@@ -6,6 +6,7 @@ const isAdmin = async (req, res, next) => {
     if(user.isAdmin){
         return next()
     } else {
+        res.status(401).send()
         return res.redirect('/login')
     }
 }
