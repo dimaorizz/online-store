@@ -1,7 +1,8 @@
-require('dotenv').config()
+require('dotenv').config() //Getting an env variables
 
 const mongoose = require('mongoose')
 
+//function purpose: connect to mongodb
 const init = () => {
     mongoose.connect(process.env.MONGO_DB, { useNewUrlParser: true, useFindAndModify: true, useUnifiedTopology: true }, (err) => {
         if(err) {
@@ -10,8 +11,8 @@ const init = () => {
             console.log('MongoDB connected')
         }
     })
-
-    mongoose.connection.on('disconnected', () => {
+    // auto reconnect
+    mongoose.connection.on('disconnected', () => {  
         console.log('MongoDB Disconnected, reconnecting...')
         init()
     })

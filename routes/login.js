@@ -1,16 +1,18 @@
+// Frameworks/libs
 const express = require('express')
 const passport = require('passport')
-const User = require('../models/User')
+// Methods
 const router = express.Router()
 
 
-// GET: localhost:3000/login/
+// GET: localhost:3000/login
 router.get('/', (req, res) => {
     res.render('login')
 });
 
+// POST: localhost:3000/login
 router.post('/', (req, res, next) => {
-    passport.authenticate('local', function(err, user) {
+    passport.authenticate('local', (err, user) => { // Authenticating user with passport local strategy using custom handler
         if (err) {
             return next(err);
         }
