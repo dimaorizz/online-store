@@ -12,9 +12,12 @@ const logoutRoute = require('./routes/logout')
 const registerRoute = require('./routes/register')
 const cartRoute = require('./routes/cart')
 
-// Utils
+// Initials
 const passportInit = require('./passport-cfg')
 const mongoInit = require('./mongoConnection')
+
+// Middlewares
+const pageNotFound = require('./middlewares/pageNotFound')
 
 const app = express() // Creating an express app
 const PORT = 3000 || process.env.PORT // default PORT settings
@@ -50,6 +53,7 @@ app.use('/admin', adminRoute)
 app.use('/register', registerRoute)
 app.use('/cart', cartRoute)
 app.use('/logout', logoutRoute)
+app.use(pageNotFound)
 
 // Setting up server on PORT
 app.listen(PORT, () => {

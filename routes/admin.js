@@ -4,9 +4,9 @@ const express = require('express')
 const router = express.Router()
 //Models
 const Goods = require('../models/Goods')
-// Utils
-const isAuth = require('../utils/isAuth')
-const isAdmin = require('../utils/isAdmin')
+// Middlewares
+const isAuth = require('../middlewares/isAuth')
+const isAdmin = require('../middlewares/isAdmin')
 
 // GET: localhost:3000/admin
 router.get('/', isAuth, isAdmin, (req, res) => {

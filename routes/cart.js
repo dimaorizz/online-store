@@ -2,8 +2,9 @@
 const express = require('express')
 // Methods
 const router = express.Router()
-// Utils
-const isAuth = require('../utils/isAuth')
+// Middlewares
+const isAuth = require('../middlewares/isAuth')
+// Models
 const Cart = require('../models/Cart')
 
 // GET: localhost:3000/cart
