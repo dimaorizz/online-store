@@ -7,16 +7,17 @@ const router = express.Router()
 
 // GET: localhost:3000/login
 router.get('/', (req, res) => {
-    res.render('login')
+    res.render('login', { message: req.flash('error')})
 });
 
 // POST: localhost:3000/login
 router.post('/', (req, res, next) => {
-    passport.authenticate('local', (err, user) => { // Authenticating user with passport local strategy using custom handler
+    passport.authenticate('local', (err, user, flash) => { // Authenticating user with passport local strategy using custom handler
         if (err) {
             return next(err);
         }
         if (!user) {
+            req.flash('error', flash.err)
             return res.redirect('/login');
         }
         req.logIn(user, (err) => {

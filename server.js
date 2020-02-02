@@ -4,6 +4,7 @@ const session = require('express-session')
 const path = require('path')
 const FileStore = require('session-file-store')(session)
 const passport = require('passport')
+const flash = require('express-flash')
 // Routes
 const indexRoute = require('./routes/mainPage')
 const loginRoute = require('./routes/login')
@@ -29,7 +30,10 @@ app.use(express.static(path.join(__dirname + '/client/'))) // setting static fil
 app.use(express.json()) // json parser
 app.use(express.urlencoded({ extended: false })) // urlencoded parser
 
-// passport-session middleware
+//Setting up flash-msg middleware
+app.use(flash())
+
+// express-session middleware
 app.use(session({
     secret: 'dadFDEF4gh',
     store: new FileStore(),
@@ -41,6 +45,7 @@ app.use(session({
     resave: false,
     saveUninitialized: false,
 }))
+
 // Setting up passport
 app.use(passport.initialize())
 app.use(passport.session())

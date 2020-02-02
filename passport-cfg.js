@@ -8,14 +8,14 @@ function init(passport) {
     const authUser = async (email, password, done) => {
         const user = await User.findOne({ email })
         if(user === null){
-            return done(null, false, { message: 'No user with this email' })
+            return done(null, false, { err: 'No user with this email' })
         }
 
         try{
             if(await bcrypt.compare(password, user.password)) {
                 return done(null, user);
             } else {
-                return done(null, false, { message: 'Wrong password' })
+                return done(null, false, { err: 'Wrong password' })
             }
         } catch(err) {
             return done(err)
