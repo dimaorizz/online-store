@@ -5,6 +5,7 @@ const path = require('path')
 const FileStore = require('session-file-store')(session)
 const passport = require('passport')
 const flash = require('express-flash')
+
 // Routes
 const indexRoute = require('./routes/mainPage')
 const loginRoute = require('./routes/login')
@@ -12,6 +13,7 @@ const adminRoute = require('./routes/admin')
 const logoutRoute = require('./routes/logout')
 const registerRoute = require('./routes/register')
 const cartRoute = require('./routes/cart')
+const itemRoute = require('./routes/item')
 
 // Initials
 const passportInit = require('./passport-cfg')
@@ -58,10 +60,12 @@ app.use('/admin', adminRoute)
 app.use('/register', registerRoute)
 app.use('/cart', cartRoute)
 app.use('/logout', logoutRoute)
+app.use('/item', itemRoute)
 app.use(pageNotFound)
+
+
 
 // Setting up server on PORT
 app.listen(PORT, () => {
     console.log(`Server is running on port ${PORT}`)
-
 })

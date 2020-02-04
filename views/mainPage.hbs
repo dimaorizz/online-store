@@ -29,7 +29,7 @@
 	          	</li>
             {{else}}
               <li class="nav-item active">
-                <a href="#" class="nav-link ">Main</a>
+                <a href="/" class="nav-link ">Main Page</a>
               </li>
               <li class="nav-item">
                 <a href="/login" class="nav-link">Sign in</a>
@@ -48,16 +48,18 @@
     <div class="container-fluid">
       <div class="row">
         {{#each items}}
-        <div class="generatedCard col-3"">
-          <div class="card mt-5">
-            <img src="https://images.unsplash.com/photo-1565396319243-49b1f67c82a1?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1351&q=80" class="card-img-top" alt="...">
-              <div class="card-body">
-                <h5 class="card-title">{{this.itemName}}</h5>
-                <p class="card-text">{{this.description}}</p>
-                <a href="#" name="cart" data-id="{{this._id}}">Корзина</a>
+          <a href="/item?id={{this._id}}">
+            <div class="generatedCard col-3"">
+              <div class="card mt-5">
+                <img src="https://images.unsplash.com/photo-1565396319243-49b1f67c82a1?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1351&q=80" class="card-img-top" alt="...">
+                  <div class="card-body">
+                    <h5 class="card-title">{{this.itemName}}</h5>
+                    <p class="card-text">{{this.description}}</p>
+                    <a href="/cart" name="cart" data-id="{{this._id}}">Корзина</a>
+                  </div>
+                </div>
               </div>
-            </div>
-          </div>
+            </a>
         {{/each}}
       </div>
   	</div>
