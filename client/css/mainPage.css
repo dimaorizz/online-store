@@ -10,6 +10,10 @@ footer {
 	margin: 0;
 }
 
+.card-text {
+	text-overflow: ellipsis;
+	overflow: hidden;
+}
 
 .info {
 	height: 500px;

@@ -24,12 +24,8 @@ router.post('/', (req, res, next) => {
             if (err) {
                 return next(err);
             }
-            req.session.user_id = user.id
-            if(user.isAdmin){
-                res.redirect('/admin')
-            } else {
-                res.redirect('/')
-            }
+            req.session.passport.user = user.id
+            res.redirect('/')
       });
     })(req, res, next);
   });
