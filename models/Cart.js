@@ -7,10 +7,10 @@ const CartSchema = new Schema({
         required: true,
         unique: true,
     },
-    items: {
-        type: Array,
-        default: [],
-    },
+    items:[ {
+        type: Schema.Types.ObjectId,
+        ref: 'goods',
+    }],
 })
 
 module.exports = mongoose.model('cart', CartSchema)

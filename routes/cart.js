@@ -11,22 +11,27 @@ const Goods = require('../models/Goods')
 // GET: localhost:3000/cart
 router.get('/', isAuth, async (req, res) => {
     const cart = await Cart.findOne({ userID: req.session.user_id })
-    let goods = []
+    // let goods = []
     
-    for(let i = 0; i < cart.items.length; i++) {
-        goods.push(await Goods.findById(cart.items[i]))
-    }
+    // for(let i = 0; i < cart.items.length; i++) {
+    //     goods.push(await Goods.findById(cart.items[i]))
+    // }
 
-    res.render('cart', { cart, goods })
+    const items = await (await cart.populate('items').execPopulate()).toObject().items
+
+    console.log(items)
+
+    res.render('cart', { cart, items })
 })
 
 // POST: localhost:3000/cart/:id
 router.post('/:id', async (req, res) => {
     const itemID = req.params.id // get :id value
+    const item = await Goods.findById(itemID)
     try {
         const cart = await Cart.findOne({ userID: req.session.user_id })
         if(cart === null) { // if user has no cart
-            const newCart = new Cart({ userID: req.session.user_id, items: [ itemID ] }) // creating new cart
+            const newCart = new Cart({ userID: req.session.user_id, items: [ item ] }) // creating new cart
             newCart.save((err) => {
                 if(err) {
                     console.log(err)
@@ -36,7 +41,7 @@ router.post('/:id', async (req, res) => {
             })
         } else { // if user has a cart
             let items = cart.items // get an array of items id
-            items.push(itemID)  // add one item
+            items.push(item)  // add one item
             Cart.findOneAndUpdate({ userID: req.session.user_id }, {items: items}) // update items in cart
             .then(() => {
                 res.status(200).send()
@@ -46,7 +51,7 @@ router.post('/:id', async (req, res) => {
             })
         }
     } catch (error) {
-        return res.status(500).send()
+        return res.status(500).send(error)
     }
 })
 
