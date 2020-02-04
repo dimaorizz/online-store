@@ -6,10 +6,18 @@ const router = express.Router()
 const isAuth = require('../middlewares/isAuth')
 // Models
 const Cart = require('../models/Cart')
+const Goods = require('../models/Goods')
 
 // GET: localhost:3000/cart
-router.get('/', isAuth, (req, res) => {
-    res.render('cart', { })
+router.get('/', isAuth, async (req, res) => {
+    const cart = await Cart.findOne({ userID: req.session.user_id })
+    let goods = []
+    
+    for(let i = 0; i < cart.items.length; i++) {
+        goods.push(await Goods.findById(cart.items[i]))
+    }
+
+    res.render('cart', { cart, goods })
 })
 
 // POST: localhost:3000/cart/:id
