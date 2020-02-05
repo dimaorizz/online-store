@@ -5,6 +5,7 @@ const path = require('path')
 const FileStore = require('session-file-store')(session)
 const passport = require('passport')
 const flash = require('express-flash')
+const hbs = require('hbs')
 
 // Routes
 const indexRoute = require('./routes/mainPage')
@@ -28,6 +29,7 @@ const PORT = 3000 || process.env.PORT // default PORT settings
 mongoInit()
 
 app.set('view engine', 'hbs') // setting view engine to handlebars
+hbs.registerPartials(path.join(__dirname, 'partials'))
 app.use(express.static(path.join(__dirname + '/client/'))) // setting static files path
 app.use(express.json()) // json parser
 app.use(express.urlencoded({ extended: false })) // urlencoded parser

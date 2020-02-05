@@ -1,0 +1,39 @@
+<nav class="navbar navbar-expand-lg sticky-top navbar-light bg-light">
+		<a href="#" class="navbar-brand">
+		   <img src="/img/logo.png"  width="130" height="70" alt="logo">
+		</a>
+		<h1 class="name">TUCASHOP</h1>
+	    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+	       	<span class="navbar-toggler-icon"></span>    
+	    </button>
+	    <div class="collapse navbar-collapse justify-content-end" id="navbarSupportedContent">
+	        <ul class="navbar-nav">
+            {{#if isLogged}}
+              <li class="nav-item">
+	            	<a href="/profile?{{userInfo._id}}" class="nav-link">Logged as {{userInfo.username}}</a>
+	          	</li>
+              {{#if userInfo.isAdmin}}
+                <li class="nav-item">
+	            	  <a href="/admin" class="nav-link">Admin panel</a>
+	          	  </li>
+              {{/if}}
+              <li class="nav-item">
+	            	<a href="/cart" class="nav-link">Корзина</a>
+	          	</li>
+              <li class="nav-item">
+	            	<a href="/logout" class="nav-link">Log out</a>
+	          	</li>
+            {{else}}
+              <li class="nav-item active">
+                <a href="/" class="nav-link ">Main Page</a>
+              </li>
+              <li class="nav-item">
+                <a href="/login" class="nav-link">Sign in</a>
+              </li>  
+              <li class="nav-item">
+                <a href="register" class="nav-link">Sign up</a>
+              </li>
+            {{/if}}
+	        </ul>
+	    </div>
+    </nav>
