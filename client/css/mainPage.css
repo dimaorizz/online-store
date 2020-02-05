@@ -1,3 +1,7 @@
+body {
+	font-size: 15px;
+}
+
 .navbar {
 	background-color: #F0A03D !important
 }
@@ -13,6 +17,23 @@ footer {
 .card-text {
 	text-overflow: ellipsis;
 	overflow: hidden;
+}
+
+.card-button {
+	background-color: #32cd32;
+	border-radius: 7px;
+	border: 0;
+	color: #ffffff;
+	font-size: 1.2em;
+	outline: none;
+}
+
+.card-button:focus{
+	outline: none;
+}
+
+.card-cost {
+	font-size: 1.5em;
 }
 
 .info {

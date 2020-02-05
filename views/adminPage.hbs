@@ -4,9 +4,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+	<link rel="stylesheet" href="/css/mainPage.css">
+    <title>Admin</title>
 </head>
 <body>
+    {{> nav}}
     <form action="/admin" method="POST">
         <input type="text" name="itemName">
         <input type="text" name="description">
@@ -14,16 +17,21 @@
         <button type="submit">Создать товар</button>
     </form>
     <div class="msg">{{msg}}</div>
-    {{#each items}}
-        <div class="items">
-            <div class="item">
-                <h2>{{this.itemName}}</h2>
-                <p class="description">{{this.description}}</p>
-                <p class="cost">{{this.cost}}</p>
-                <p class="id">{{this._id}}</p>
-                <button class="delete-item">Delete</button>
-            </div>
-        </div>
-    {{/each}}
+    <div class="container-fluid">
+      <div class="row">
+        {{#each items}}
+            <div class="generatedCard col-md-3 col-sm-6 col-xs-12">
+              <div class="card mt-5">
+                <img src="https://images.unsplash.com/photo-1565396319243-49b1f67c82a1?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1351&q=80" class="card-img-top" alt="...">
+                  <div class="card-body">
+                    <h5 class="card-title">{{this.itemName}}</h5>
+                    <p class="card-text">{{this.description}}</p>
+                    <div class="card-cost">{{this.cost}} грн</div>
+                    <p class="card-id">ID: {{this._id}}</p>
+                    <button>Удалить</button>
+                  </div>
+                </div>
+              </div>
+        {{/each}}
 </body>
 </html>

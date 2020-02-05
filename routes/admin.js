@@ -4,6 +4,7 @@ const express = require('express')
 const router = express.Router()
 //Models
 const Goods = require('../models/Goods')
+const User = require('../models/User')
 // Middlewares
 const isAuth = require('../middlewares/isAuth')
 const isAdmin = require('../middlewares/isAdmin')
@@ -12,10 +13,11 @@ const isAdmin = require('../middlewares/isAdmin')
 router.get('/', isAuth, isAdmin, async (req, res) => {
     try {
         const goods = await Goods.find()
+        const user = await User.findById(req.session.passport.user)
         if(goods.length !== 0) {
-            res.render('adminPage', { items: goods, msg: '' })
+            res.render('adminPage', { items: goods, msg: '' , isLogged: req.user !== undefined,  userInfo: user})
         } else {
-            res.render('adminPage', { msg: 'No goods on your website' })
+            res.render('adminPage', { msg: 'No goods on your website' , isLogged: req.user !== undefined,  userInfo: user})
         }
     } catch (error) {
         

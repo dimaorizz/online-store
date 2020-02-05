@@ -10,7 +10,8 @@ const Goods = require('../models/Goods')
 
 // GET: localhost:3000/cart
 router.get('/', isAuth, async (req, res) => {
-    const cart = await Cart.findOne({ userID: req.session.user_id })
+    const cart = await Cart.findOne({ userID: req.session.passport.user })
+    
     // let goods = []
     
     // for(let i = 0; i < cart.items.length; i++) {
@@ -18,8 +19,6 @@ router.get('/', isAuth, async (req, res) => {
     // }
 
     const items = await (await cart.populate('items').execPopulate()).toObject().items
-
-    console.log(items)
 
     res.render('cart', { cart, items })
 })
@@ -29,9 +28,9 @@ router.post('/:id', async (req, res) => {
     const itemID = req.params.id // get :id value
     const item = await Goods.findById(itemID)
     try {
-        const cart = await Cart.findOne({ userID: req.session.user_id })
+        const cart = await Cart.findOne({ userID: req.session.passport.user })
         if(cart === null) { // if user has no cart
-            const newCart = new Cart({ userID: req.session.user_id, items: [ item ] }) // creating new cart
+            const newCart = new Cart({ userID: req.session.passport.user, items: [ item ] }) // creating new cart
             newCart.save((err) => {
                 if(err) {
                     console.log(err)
@@ -42,7 +41,7 @@ router.post('/:id', async (req, res) => {
         } else { // if user has a cart
             let items = cart.items // get an array of items id
             items.push(item)  // add one item
-            Cart.findOneAndUpdate({ userID: req.session.user_id }, {items: items}) // update items in cart
+            Cart.findOneAndUpdate({ userID: req.session.passport.user }, {items: items}) // update items in cart
             .then(() => {
                 res.status(200).send()
             })
