@@ -7,6 +7,6 @@ function addItem(e) {
     if(itemId === null) {
         return
     } else {
-        return fetch(`/cart/${itemId}`, {method: 'POST'}).then(res => res.json)
+        return fetch(`/cart/${itemId}`, {method: 'DELETE'}).then(res => res.json)
     }
 }

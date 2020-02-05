@@ -28,10 +28,11 @@
                     <p class="card-text">{{this.description}}</p>
                     <div class="card-cost">{{this.cost}} грн</div>
                     <p class="card-id">ID: {{this._id}}</p>
-                    <button>Удалить</button>
+                    <button class="delete" data-id="{{this._id}}">Удалить</button>
                   </div>
                 </div>
               </div>
         {{/each}}
+        <script src="scripts/adminPanel.js"></script>
 </body>
 </html>

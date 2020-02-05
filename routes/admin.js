@@ -24,7 +24,7 @@ router.get('/', isAuth, isAdmin, async (req, res) => {
     }
 })
 
-//POST: localhost:3000/admin
+// POST: localhost:3000/admin
 router.post('/', isAdmin, (req, res) => {
     const newItem = new Goods({ itemName: req.body.itemName, description: req.body.description, cost: req.body.cost })
     newItem.save()
@@ -35,6 +35,13 @@ router.post('/', isAdmin, (req, res) => {
     .catch(() => {
         res.status(500).send()
     })
+})
+
+// DELETE: localhost:3000/admin
+router.delete('/:id', isAdmin, (req, res) => {
+    Goods.findByIdAndDelete(req.params.id)
+    .then((res.redirect('/admin')))
+    .catch(e => console.log(e))
 })
 
 module.exports = router
