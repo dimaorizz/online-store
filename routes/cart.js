@@ -17,9 +17,7 @@ router.get('/', isAuth, async (req, res) => {
     // for(let i = 0; i < cart.items.length; i++) {
     //     goods.push(await Goods.findById(cart.items[i]))
     // }
-
-    const items = await (await cart.populate('items').execPopulate()).toObject().items
-
+    const items = await (await cart.populate('items.item').execPopulate()).toObject().items
     res.render('cart', { cart, items })
 })
 
@@ -30,7 +28,7 @@ router.post('/:id', async (req, res) => {
     try {
         const cart = await Cart.findOne({ userID: req.session.passport.user })
         if(cart === null) { // if user has no cart
-            const newCart = new Cart({ userID: req.session.passport.user, items: [ item ] }) // creating new cart
+            const newCart = new Cart({ userID: req.session.passport.user, items: [ { item } ] }) // creating new cart
             newCart.save((err) => {
                 if(err) {
                     console.log(err)
@@ -39,9 +37,13 @@ router.post('/:id', async (req, res) => {
                 }
             })
         } else { // if user has a cart
-            let items = cart.items // get an array of items id
-            items.push(item)  // add one item
-            Cart.findOneAndUpdate({ userID: req.session.passport.user }, {items: items}) // update items in cart
+            let items = await (await cart.populate('items').execPopulate()).toObject().items // get an array of items id
+            items.map((el) => {
+                if(el.item._id === item._id) {
+                    //el.quantity
+                }
+            })
+            Cart.findOneAndUpdate({ userID: req.session.passport.user }, { items: { } }) // update items in cart
             .then(() => {
                 res.status(200).send()
             })
