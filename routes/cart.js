@@ -61,4 +61,15 @@ router.post('/:id', async (req, res) => {
     }
 })
 
+router.delete('/:id', async (req, res) => {
+    const itemID = req.params.id
+    const cart = await Cart.findOne({ userID: req.session.passport.user })
+    let items = cart.items.filter(el => el.item._id.toString() !== itemID)
+
+    console.log(items)
+    
+    Cart.updateOne({ userID: req.session.passport.user }, { items }, (err) => {})
+
+})
+
 module.exports = router

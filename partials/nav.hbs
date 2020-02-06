@@ -1,5 +1,5 @@
 <nav class="navbar navbar-expand-lg sticky-top navbar-light bg-light">
-		<a href="#" class="navbar-brand">
+		<a href="/" class="navbar-brand">
 		   <img src="/img/logo.png"  width="130" height="70" alt="logo">
 		</a>
 		<h1 class="name">TUCASHOP</h1>
@@ -13,7 +13,7 @@
             </li>
             {{#if isLogged}}
               <li class="nav-item active">
-	            	<a href="/profile?{{userInfo._id}}" class="nav-link">Logged as {{userInfo.username}}</a>
+	            	<p class="nav-link">Logged as {{userInfo.username}}</p>
 	          	</li>
               {{#if userInfo.isAdmin}}
                 <li class="nav-item active">

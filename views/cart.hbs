@@ -14,10 +14,11 @@
                 <h2>{{this.item.itemName}}</h2>
                 <p class="description">{{this.item.description}}</p>
                 <p class="cost">{{this.item.cost}}</p>
-                <button class="delete-item">Delete</button>
+                <button class="delete-item" data-id="{{this.item._id}}">Delete</button>
             </div>
         </div>
         {{/each}}
     </div>
+    <script src="scripts/cart.js"></script>
 </body>
 </html>
