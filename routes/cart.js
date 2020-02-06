@@ -11,14 +11,12 @@ const Goods = require('../models/Goods')
 // GET: localhost:3000/cart
 router.get('/', isAuth, async (req, res) => {
     const cart = await Cart.findOne({ userID: req.session.passport.user })
-    
-    // let goods = []
-    
-    // for(let i = 0; i < cart.items.length; i++) {
-    //     goods.push(await Goods.findById(cart.items[i]))
-    // }
-    const items = await (await cart.populate('items.item').execPopulate()).toObject().items
-    res.render('cart', { cart, items })
+    if(cart === null) {
+        res.render('cart', { cart })
+    } else {
+        const items = await (await cart.populate('items.item').execPopulate()).toObject().items
+        res.render('cart', { cart, items })
+    }
 })
 
 // POST: localhost:3000/cart/:id
@@ -37,13 +35,20 @@ router.post('/:id', async (req, res) => {
                 }
             })
         } else { // if user has a cart
-            let items = await (await cart.populate('items').execPopulate()).toObject().items // get an array of items id
-            items.map((el) => {
-                if(el.item._id === item._id) {
-                    //el.quantity
-                }
-            })
-            Cart.findOneAndUpdate({ userID: req.session.passport.user }, { items: { } }) // update items in cart
+            let items = cart.items // get an array of items id
+            
+            if(!items.some(el => {
+               if(el.item._id.toString() === item._id.toString()) {
+                   ++el.quantity 
+                   return true
+               } else {
+                   return false
+               }
+            })) {
+                items.push({ item })
+            }
+
+            Cart.findOneAndUpdate({ userID: req.session.passport.user }, { items }) // update items in cart
             .then(() => {
                 res.status(200).send()
             })
