@@ -10,11 +10,11 @@
 </head>
 <body>
     {{> nav}}
-    <form action="/admin" method="POST">
+    <form action="/admin" method="POST" enctype="multipart/form-data">
         <input type="text" name="itemName">
         <input type="text" name="description">
         <input type="text" name="cost">
-        <input type="file" name="file" id="file">
+        <input type="file" name="img">
         <button type="submit">Создать товар</button>
     </form>
     <div class="msg">{{msg}}</div>

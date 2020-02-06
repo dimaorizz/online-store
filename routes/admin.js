@@ -1,7 +1,9 @@
 // Frameworks / libs
 const express = require('express')
+const fs = require('fs')
 // Methods
 const router = express.Router()
+const upload = require('../config/multerConfig')
 //Models
 const Goods = require('../models/Goods')
 const User = require('../models/User')
@@ -25,15 +27,18 @@ router.get('/', isAuth, isAdmin, async (req, res) => {
 })
 
 // POST: localhost:3000/admin
-router.post('/', isAdmin, (req, res) => {
-    const newItem = new Goods({ itemName: req.body.itemName, description: req.body.description, cost: req.body.cost })
-    newItem.save()
-    .then(() => {
-        res.status(200).send()
-        res.redirect('/admin')
-    })
-    .catch(() => {
-        res.status(500).send()
+router.post('/', isAdmin, upload.single('img'), async (req, res) => {
+    const filename = Date.now()
+    fs.writeFile(`./client/img/${filename}.jpg`, req.file.buffer, () => {
+        const newItem = new Goods({ itemName: req.body.itemName, description: req.body.description, cost: req.body.cost, image: `/img/${filename}.jpg` })
+        newItem.save()
+        .then(() => {
+            res.status(200).send()
+            res.redirect('/admin')
+        })
+        .catch(() => {
+            res.status(500).send()
+        })
     })
 })
 

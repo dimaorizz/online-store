@@ -14,6 +14,10 @@ const GoodsSchema = new Schema({
         type: Number,
         required: true,
     },
+    image: {
+        type: String,
+        default: null,
+    },
     regDate: {
         type: Date,
         default: Date.now,
