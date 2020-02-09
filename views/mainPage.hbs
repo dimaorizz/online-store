@@ -12,22 +12,27 @@
 <!-- Шапка с адапнивным меню-->
     {{> nav}}
     <!--сетка-->
-    {{!-- <div class="info col-12">
-     	
-    </div> --}}
+    
     <div class="container-fluid">
+      <div class="row">
+        <div class="col-4">
+          <form class="form-inline md-form form-sm active-cyan-2 mt-2">
+            <input class="form-control form-control-sm mr-3 w-75" type="text" placeholder="Search"
+              aria-label="Search">
+            <i class="fas fa-search" aria-hidden="true"></i>
+          </form>
+        </div>
+      </div>
       <div class="row">
         {{#each items}}
           <a href="/item?id={{this._id}}">
-            <div class="generatedCard col-md-3 col-sm-6 col-xs-12">
+            <div class="generatedCard col-lg-2 col-md-3 col-sm-6 col-xs-12" >
               <div class="card mt-5">
-                <img src="{{this.image}}" class="card-img-top" alt="...">
+                <img src="{{this.image}}" class="card-img-top" alt="photo" style="min-width:133x; min-height:280px; object-fit: cover;">
                   <div class="card-body">
                     <h5 class="card-title text-center">{{this.itemName}}</h5>
-                    <div class="d-flex justify-content-between align-items-center">
-                      <p class="card-cost">{{this.cost}} UAH</p>
-                      <a><button class="card-button" name="cart" data-id="{{this._id}}">Add to Cart</button></a>
-                    </div>
+                    <p style="font-size: 1.3em" class="card-text text-left">{{this.cost}} USD</p>
+                    <div class="d-flex justify-content-center"><a class="btn btn-outline-success mt-4" style="cursor: pointer">Add to Cart</a></div>
                   </div>
                 </div>
               </div>
