@@ -21,10 +21,11 @@
                     <p class="item-description">{{item.description}}</p>
                 <div style="margin-top: 50px" class="d-flex justify-content-around align-items-end">
                     <div class="card-cost">{{item.cost}}$</div>
-                    <div class="d-flex justify-content-center"><a class="btn btn-outline-success mt-4" style="cursor: pointer">Add to Cart</a></div>
+                    <div class="d-flex justify-content-center"><a data-id="{{item._id}}" class=" itm btn btn-outline-success mt-4" style="cursor: pointer">Add to Cart</a></div>
                 </div>
             </div>
         </div>
     </div>
+    <script src="/scripts/item.js"></script>
 </body>
 </html>

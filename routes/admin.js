@@ -43,7 +43,7 @@ router.post('/', isAdmin, upload.single('img'), async (req, res) => {
 })
 
 // DELETE: localhost:3000/admin
-router.delete('/:id', (req, res) => {
+router.delete('/:id', isAdmin, (req, res) => {
     Goods.findByIdAndDelete(req.params.id)
     .then((res.redirect('/admin')))
     .catch(e => console.log(e))
