@@ -4,20 +4,31 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
-</head>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="/css/nav.css">
+    <link rel="stylesheet" href="/css/cart.css">
+    <title>Cart</title>
+</head> 
 <body>
-    <div class="cart">
-        {{#each items}}
-        <div class="items">
-            <div class="item">
-                <h2>{{this.item.itemName}}</h2>
-                <p class="description">{{this.item.description}}</p>
-                <p class="cost">{{this.item.cost}}</p>
-                <button class="delete-item" data-id="{{this.item._id}}">Delete</button>
+    {{> nav}}
+    <div class="container">
+        <div class="row mt-3">
+            <div class="col-12">
+                <h2 class="text-center">Cart</h2>
             </div>
         </div>
+        {{#each items}}
+        <div class="row mt-4">
+            <p class="col-md-3 col-sm-12 text-center">{{this.item.itemName}}</p>
+            <p class="cost col-md-3 col-sm-12 text-center">{{this.item.cost}}$</p>
+            <p class="quantity col-md-3 col-sm-12 text-center">{{this.quantity}}</p>
+            <p data-id="{{this._id}}" class="text-center btn btn-outline-danger delete-item col-md-3 col-sm-12" style="cursor: pointer">Remove</p>
+        </div>
         {{/each}}
+        <div class="row mt-5">
+            <div class="total col-2 offset-8">Total: {{total}}$</div>
+            <button type="button" class="col-2 btn btn-success">Order</button>
+        </div>
     </div>
     <script src="scripts/cart.js"></script>
 </body>

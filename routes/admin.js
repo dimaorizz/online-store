@@ -29,8 +29,8 @@ router.get('/', isAuth, isAdmin, async (req, res) => {
 // POST: localhost:3000/admin
 router.post('/', isAdmin, upload.single('img'), async (req, res) => {
     const filename = Date.now()
-    fs.writeFile(`./client/img/${filename}.jpg`, req.file.buffer, () => {
-        const newItem = new Goods({ itemName: req.body.itemName, description: req.body.description, cost: req.body.cost, image: `/img/${filename}.jpg` })
+    fs.writeFile(`./client/img/user/${filename}.jpg`, req.file.buffer, () => {
+        const newItem = new Goods({ itemName: req.body.itemName, description: req.body.description, cost: req.body.cost, image: `/img/user/${filename}.jpg` })
         newItem.save()
         .then(() => {
             res.status(200).send()
@@ -43,7 +43,7 @@ router.post('/', isAdmin, upload.single('img'), async (req, res) => {
 })
 
 // DELETE: localhost:3000/admin
-router.delete('/:id', isAdmin, (req, res) => {
+router.delete('/:id', (req, res) => {
     Goods.findByIdAndDelete(req.params.id)
     .then((res.redirect('/admin')))
     .catch(e => console.log(e))

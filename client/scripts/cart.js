@@ -4,7 +4,7 @@ function deleteItem(e){
     let itemId = e.target.getAttribute('data-id')
     if(itemId === null) {
         return
-    } else {
+    } else { 
         return fetch(`/cart/${itemId}`, {method: 'DELETE'}).catch((e) => console.log(e))
     }
 }

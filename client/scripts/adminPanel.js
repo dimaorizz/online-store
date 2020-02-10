@@ -2,6 +2,7 @@ document.querySelectorAll('.delete').forEach(button => button.addEventListener('
 
 function deleteItem(e){
     let itemId = e.target.getAttribute('data-id')
+    console.log(itemId)
     if(itemId === null) {
         return
     } else {

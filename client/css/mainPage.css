@@ -2,9 +2,7 @@ body {
 	font-size: 15px;
 }
 
-.navbar {
-	background-color: #49b675 !important
-}
+
 
 footer {
 	background-color: #F0F0F0 !important
@@ -49,9 +47,13 @@ a, a:hover {
 
 .card:hover {
 	transform: scale(1.08);
-	transition: 0.3s;
+	transition: 0.2s;
 }
 
 .card {
-	transition: transform 0.3s;
+	transition: transform 0.2s;
+}
+
+.btn:hover{
+	color: #ffffff !important;
 }

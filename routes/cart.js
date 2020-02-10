@@ -7,15 +7,21 @@ const isAuth = require('../middlewares/isAuth')
 // Models
 const Cart = require('../models/Cart')
 const Goods = require('../models/Goods')
+const User = require('../models/User')
 
 // GET: localhost:3000/cart
 router.get('/', isAuth, async (req, res) => {
+    let total = 0
     const cart = await Cart.findOne({ userID: req.session.passport.user })
+    const user = await User.findById(req.session.passport.user)
     if(cart === null) {
         res.render('cart', { cart })
     } else {
         const items = await (await cart.populate('items.item').execPopulate()).toObject().items
-        res.render('cart', { cart, items })
+        for(let i = 0; i < items.length; i++){
+            total += items[i].quantity * items[i].item.cost
+        }
+        res.render('cart', { cart, items, isLogged: req.user !== undefined,  userInfo: user, total })
     }
 })
 
@@ -64,10 +70,7 @@ router.post('/:id', async (req, res) => {
 router.delete('/:id', async (req, res) => {
     const itemID = req.params.id
     const cart = await Cart.findOne({ userID: req.session.passport.user })
-    let items = cart.items.filter(el => el.item._id.toString() !== itemID)
-
-    console.log(items)
-    
+    let items = cart.items.filter(el => el._id.toString() !== itemID)
     Cart.updateOne({ userID: req.session.passport.user }, { items }, (err) => {})
 
 })

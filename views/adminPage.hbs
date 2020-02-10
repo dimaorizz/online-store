@@ -6,33 +6,36 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 	  <link rel="stylesheet" href="/css/mainPage.css">
+    <link rel="stylesheet" href="/css/nav.css">
     <title>Admin</title>
 </head>
 <body>
     {{> nav}}
-    <form action="/admin" method="POST" enctype="multipart/form-data">
-        <input type="text" name="itemName">
-        <input type="text" name="description">
-        <input type="text" name="cost">
-        <input type="file" name="img">
-        <button type="submit">Создать товар</button>
-    </form>
-    <div class="msg">{{msg}}</div>
     <div class="container-fluid">
       <div class="row">
+        <div class="col-12 mt-1">
+          <form class="mt-5" action="/admin" method="POST" enctype="multipart/form-data">
+            <input placeholder="Name" type="text" name="itemName" id="name">
+            <input placeholder="Description" type="text" name="description" id="description">
+            <input placeholder="Cost" type="text" name="cost" id="cost">
+            <input value="Фото товара" type="file" name="img" id="file">
+            <button class="btn btn-outline-success" style="cursor: pointer" type="submit">Create</button>
+          </form>
+          <div class="msg">{{msg}}</div>
+        </div>
         {{#each items}}
-            <div class="generatedCard col-md-2 col-sm-2 col-xs-12">
+          <a href="/item?id={{this._id}}">
+            <div class="generatedCard col-lg-2 col-md-3 col-sm-6 col-xs-12" >
               <div class="card mt-5">
-                <img src="https://images.unsplash.com/photo-1565396319243-49b1f67c82a1?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1351&q=80" class="card-img-top" alt="...">
+                <img src="{{this.image}}" class="card-img-top" alt="photo" style="min-width:133x; min-height:280px; object-fit: cover;">
                   <div class="card-body">
-                    <h5 class="card-title">{{this.itemName}}</h5>
-                    <p class="card-text">{{this.description}}</p>
-                    <div class="card-cost">{{this.cost}} грн</div>
-                    <p class="card-id">ID: {{this._id}}</p>
-                    <button class="delete" data-id="{{this._id}}">Удалить</button>
+                    <h5 class="card-title text-center">{{this.itemName}}</h5>
+                    <p style="font-size: 1.3em" class="card-text text-left">{{this.cost}}$</p>
+                    <div class="d-flex justify-content-center"><a data-id="{{this._id}}" class="btn btn-outline-danger mt-4 delete" style="cursor: pointer">Delete</a></div>
                   </div>
                 </div>
               </div>
+            </a>
         {{/each}}
         <script src="scripts/adminPanel.js"></script>
 </body>
