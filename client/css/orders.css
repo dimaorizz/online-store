@@ -1,0 +1,16 @@
+body {
+    font-size: 15px;
+}
+
+.items {
+    font-size: 1.2em;
+}
+
+.user-info {
+    font-weight: bold;
+    font-size: 1.3em;
+}
+
+.total {
+    font-size: 1.3em;
+}

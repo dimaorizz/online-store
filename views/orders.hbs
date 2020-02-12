@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="/css/nav.css">
+    <link rel="stylesheet" href="/css/orders.css">
+    <title>Orders</title>
+</head>
+<body>
+    {{> nav}}
+    <div class="container">
+        <div class="row">
+            {{#each orders}}
+                <div class="user-info col-3 mt-5"><p>{{this.name}}</p></div>
+                <div class="user-info col-3 mt-5"><p>{{this.surname}}</p></div>
+                <div class="user-info col-3 mt-5"><p>{{this.adress}}</p></div>
+                <div class="user-info col-3 mt-5"><p>{{this.phone}}</p></div>
+                {{#each this.items}}
+                        <p class="items col-md-4 col-sm-12 text-center">{{this.item.itemName}}</p>
+                        <p class="items cost col-md-4 col-sm-12 text-center">{{this.item.cost}}$</p>
+                        <p class="items quantity col-md-4 col-sm-12 text-center">{{this.quantity}}</p>
+                {{/each}}
+                <div class="total col-2 offset-8">Total: {{this.total}}$</div>
+                <div class="col-12 d-flex justify-content-center"><a data-id="{{this._id}}" class="btn btn-outline-success mt-4 mr-4 accept" style="cursor: pointer">Accept</a><a data-id="{{this._id}}" class="btn btn-outline-danger mt-4 cancel" style="cursor: pointer">Cancel</a></div>
+            {{/each}}
+        </div>
+    </div>
+    <script>
+        document.querySelector('.accept').addEventListener('click', accept)
+        document.querySelector('.cancel').addEventListener('click', cancel)
+
+        function accept(e) {
+            return fetch(`/orders?status=accepted&id=${e.target.getAttribute('data-id')}`, { method: 'PUT' })
+        }
+
+        function cancel(e) {
+            return fetch(`/orders?status=canceled&id=${e.target.getAttribute('data-id')}`, { method: 'PUT' })
+        }
+
+    </script>
+</body>
+</html>

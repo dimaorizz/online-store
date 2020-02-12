@@ -2,20 +2,18 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <link rel="stylesheet" href="/css/reset.css">
     <link rel="stylesheet" href="/css/loginPage.css">
     <title>MainPage</title>
 </head>
 <body>
-    {{#if message}}
-            <p>{{message}}</p>
-        {{/if}}
     <section class="main wrapper">
         <form action="/login" method="POST" class="login">
-            <legend>Вход в систему</legend>
+            <legend>Log in</legend>
             <label for="email">E-mail</label><input type="text" id="email" name="email">
             <label for="password">Password</label><input type="password" id="password" name="password">
-            <input type="submit" id="btn" value="SIGN IN">
+            <button type="submit" class="btn btn-success" id="btn" style="width: 50%;">Sign in</button>
         </form>
     </section>
 </body>

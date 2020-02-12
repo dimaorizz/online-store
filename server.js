@@ -15,6 +15,7 @@ const logoutRoute = require('./routes/logout')
 const registerRoute = require('./routes/register')
 const cartRoute = require('./routes/cart')
 const itemRoute = require('./routes/item')
+const orderRoute = require('./routes/order')
 
 // Initials
 const passportInit = require('./passport-cfg')
@@ -63,6 +64,7 @@ app.use('/register', registerRoute)
 app.use('/cart', cartRoute)
 app.use('/logout', logoutRoute)
 app.use('/item', itemRoute)
+app.use('/orders', orderRoute)
 app.use(pageNotFound)
 
 
